@@ -5,8 +5,6 @@ import Space from './Components/space'
 import SpaceShip from './Components/spaceShip'
 
 function App() {
-
-
   return (
     <>
       <Space>

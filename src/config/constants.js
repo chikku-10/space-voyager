@@ -1,0 +1,1 @@
+export const WALL_DROPPING_VELOCITY = 10;
