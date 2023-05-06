@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 
 const Space = (props) => {
-  const { children } = props;
+  const { children , stopTheGame, setStopTheGame} = props;
   const [ score, setScore] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => setScore(prevState => prevState + 1), 100);
+    let interval;
+    if(!stopTheGame){
+      interval = setInterval(() => setScore(prevState => prevState + 1), 100);
+    }
     return () => clearInterval(interval);
-  },[])
+  },[stopTheGame])
 
   return (
     <div>

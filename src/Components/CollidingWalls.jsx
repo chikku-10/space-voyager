@@ -6,14 +6,17 @@ const initialWallData = [
   "400,20,300,20,300,40,400,40",
 ];
 
-const CollidingWalls = () => {
+const CollidingWalls = (props) => {
+  const { stopTheGame, setStopTheGame } = props;
   const [walls, setWalls] = useState([initialWallData]);
   const [timerCount, setTimerCount] = useState(0);
 
   console.log("------walls------", walls);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    let interval;
+    if(!stopTheGame){
+    interval = setInterval(() => {
       const shiftedWalls = walls.map((item) => {
         const splitPoints = item.map((ele) => {
           return ele
@@ -51,8 +54,9 @@ const CollidingWalls = () => {
         setWalls([...shiftedWalls.filter((item) => item[0].split(",")[1] < 450)]);
       }
     }, 1000);
+  }
     return () => clearInterval(interval);
-  }, [walls, timerCount]);
+  }, [walls, timerCount, stopTheGame]);
 
   return walls.map((wallPath) => (
     <g key={`${wallPath[0]}-${wallPath[1]}`}>

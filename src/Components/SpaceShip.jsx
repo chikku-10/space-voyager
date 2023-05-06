@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
 
-const SpaceShip = () => {
+const SpaceShip = (props) => {
+  const { stopTheGame, setStopTheGame } = props;
   const [shipPosition, setShipPosition] = useState("200,440,210,420,220,440");
 
   useEffect(() => {
-    window.addEventListener("keydown", handleMovementOfShip);
-  }, []);
+    if(!stopTheGame){
+      window.addEventListener("keydown", handleMovementOfShip);
+    }
+    return () => window.removeEventListener("keydown", handleMovementOfShip);
+  }, [stopTheGame]);
 
   const handleMovementOfShip = (e) => {
+    if(stopTheGame){
+      return null;
+    }
     switch (e.key) {
       case "ArrowLeft":
         setShipPosition((prevState) => {
