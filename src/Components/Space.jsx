@@ -11,7 +11,7 @@ const Space = (props) => {
 
   return (
     <div>
-      <div><span>{`Score : ${score}`}</span></div>
+      <div>{`Score : ${score}`}</div>
     <svg width="400" height="450">
       <g>
         <rect
