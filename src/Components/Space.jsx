@@ -1,7 +1,17 @@
+import { useEffect, useState } from "react";
+
 const Space = (props) => {
   const { children } = props;
+  const [ score, setScore] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => setScore(prevState => prevState + 1), 100);
+    return () => clearInterval(interval);
+  },[])
 
   return (
+    <div>
+      <div><span>{`Score : ${score}`}</span></div>
     <svg width="400" height="450">
       <g>
         <rect
@@ -17,6 +27,7 @@ const Space = (props) => {
       </g>
       Sorry, your browser does not support inline SVG
     </svg>
+    </div>
   );
 };
 
